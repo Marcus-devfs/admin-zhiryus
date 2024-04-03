@@ -5,6 +5,7 @@ import { useAppContext } from "@/context/AppContext";
 import { Divider } from "@/components/divider/Divider";
 import EssayCompose from "./essay/essay";
 import FinishedEssay from "./essay/finishedEssay";
+import Authentication from "./authentication/authentication";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,15 +23,7 @@ export default function Home() {
     {
       step: 0, title: 'Bem-Vindo',
       render: (
-        <div className="flex flex-col gap-12">
-          <Card gap={2}>
-            <CardTitle text="Seja Bem vindo a redação online!" />
-            <CardText text="Esse é o primeiro passso para entrar na maior faculdade de Animação da América latína!" />
-            <CardText text="Atente-se para os pontos a seguir, antes de começar a prova." />
-            <Divider />
-            <CardButton text="Prosseguir" onClick={() => setCurrentStep(1)} />
-          </Card>
-        </div>
+        <Authentication />
       )
     },
     {
@@ -50,12 +43,15 @@ export default function Home() {
   ]
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center py-8">
-      {steps
-        .filter((item) => item.step === currentStep)
-        .map((item) => (
-          <React.Fragment key={item.step}>{item.render}</React.Fragment>
-        ))}
+    <div className="min-h-screen flex items-center justify-center py-8">
+      <div
+        className="z-[-1] fixed top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-[url('/background/imagem_prova.jpg')]"
+      />
+        {steps
+          .filter((item) => item.step === currentStep)
+          .map((item) => (
+            <React.Fragment key={item.step}>{item.render}</React.Fragment>
+          ))}
     </div>
   );
 }

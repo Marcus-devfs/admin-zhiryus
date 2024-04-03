@@ -8,6 +8,16 @@ interface AppContextType {
     totalTime: number;
     startEssay: boolean;
     setStartEssay: React.Dispatch<React.SetStateAction<boolean>>;
+    userData: UserDataObject;
+    setUserData: React.Dispatch<React.SetStateAction<UserDataObject>>;
+    handleVerifyUser: (userData: UserDataObject) => Promise<void | object | any>;
+    loading: boolean
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface UserDataObject {
+    email?: string,
+    cpf?: string
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -23,7 +33,33 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const totalTime = 200
     const [timeRemaining, setTimeRemaining] = useState<number>(totalTime);
     const [startEssay, setStartEssay] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [userData, setUserData] = useState<UserDataObject>({
+        cpf: '',
+        email: ''
+    });
 
+    const handleVerifyUser = async (userData: UserDataObject) => {
+        try {
+            const response = await fetch('/api/verifyUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userData } as Record<string, unknown>)
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao verificar o usuário');
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Erro ao verificar o usuário:', error);
+            return error
+        }
+    }
 
     return (
         <AppContext.Provider
@@ -31,8 +67,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
                 currentStep, setCurrentStep,
                 timeRemaining, setTimeRemaining,
                 totalTime,
-                startEssay, 
-                setStartEssay
+                startEssay,
+                setStartEssay,
+                userData, setUserData,
+                handleVerifyUser,
+                loading, setLoading
             }}
         >
             {children}

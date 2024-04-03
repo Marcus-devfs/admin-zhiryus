@@ -32,10 +32,10 @@ const EssayCompose: React.FC = () => {
 
     return (
         <>
-            <div className='flex flex-col w-full items-center justify-start gap-6 py-8 bg-gray-100'>
+            <div className='flex flex-col w-full items-center justify-start gap-6 py-8'>
                 <div className={`w-full h-${(showDetails && !startEssay) && 'screen'} p-6 bg-white border border-gray-200 rounded-lg shadow container flex-col flex`}>
                     <div className='flex w-full justify-between' onClick={() => setShowDetails(!showDetails)}>
-                        <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Redação Online</h1>
+                        <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Instruções da Redação</h1>
                         <div>
                             <Image alt='icon-gray' src='/icons/gray_arrow_down.png' width={30} height={20} className='' />
                         </div>
@@ -55,7 +55,7 @@ const EssayCompose: React.FC = () => {
                                 <p className='font-normal text-gray-700'>Nome: <strong>Marcus Silva</strong></p>
                                 <p className='font-normal text-gray-700'>Turma: <strong>Design de Animação</strong></p>
 
-                                <h1 className='font-bold text-gray-700 mt-5'>INSTRUÇÕES DA PROVA:</h1>
+                                <h1 className='font-bold text-gray-700 mt-5'>INSTRUÇÕES:</h1>
 
                                 <p className='font-normal text-gray-700'>1. A prova de redação dissertativa é totalmente online;</p>
                                 <p className='font-normal text-gray-700'>2. A partir deste momento, você tem até 3 (três) horas para produzir e enviar a prova completa;</p>
