@@ -24,8 +24,8 @@ export const TimeBarProgress = () => {
     }, [timeRemaining, setCurrentStep, setTimeRemaining, startEssay]);
 
     return (
-        <div className="w-full h-4 bg-slate-400">
-            <div className="h-full bg-green-500" style={{ width: `${Math.max(barWidth, 0)}%` }}></div>
+        <div className="w-full h-6 bg-slate-400">
+            <div className="h-full bg-green-500 w-full" style={{ width: `${Math.max(barWidth, 0)}%` }}></div>
         </div>
     )
 }

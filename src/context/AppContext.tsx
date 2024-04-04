@@ -1,3 +1,5 @@
+import { CryptoModal } from "@/components";
+import { CardIcon } from "@/components/card";
 import { ReactNode, createContext, useContext, useEffect, useReducer, useState } from "react";
 
 interface AppContextType {
@@ -8,14 +10,20 @@ interface AppContextType {
     totalTime: number;
     startEssay: boolean;
     setStartEssay: React.Dispatch<React.SetStateAction<boolean>>;
-    userData: UserDataObject;
-    setUserData: React.Dispatch<React.SetStateAction<UserDataObject>>;
-    handleVerifyUser: (userData: UserDataObject) => Promise<void | object | any>;
+    userAuthentication: UserAuthentication;
+    setUserAuthentication: React.Dispatch<React.SetStateAction<UserAuthentication>>;
+    handleVerifyUser: (userData: UserAuthentication) => Promise<void | object | any>;
     loading: boolean
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    userData: object | any;
+    setUserData: React.Dispatch<React.SetStateAction<object | any>>;
+    alertData: AlertData,
+    setAlertData: React.Dispatch<React.SetStateAction<AlertData>>;
+    essayContent: string;
+    setEssayContent: React.Dispatch<React.SetStateAction<string>>;
 }
 
-interface UserDataObject {
+interface UserAuthentication {
     email?: string,
     cpf?: string
 }
@@ -26,6 +34,13 @@ interface AppProviderProps {
     children: ReactNode;
 }
 
+interface AlertData {
+    active: boolean,
+    title?: string,
+    message?: string,
+    type: string
+}
+
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     const [currentStep, setCurrentStep] = useState<number>(0)
@@ -34,19 +49,27 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [timeRemaining, setTimeRemaining] = useState<number>(totalTime);
     const [startEssay, setStartEssay] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
-    const [userData, setUserData] = useState<UserDataObject>({
+    const [userAuthentication, setUserAuthentication] = useState<UserAuthentication>({
         cpf: '',
         email: ''
     });
+    const [userData, setUserData] = useState<object>({});
+    const [alertData, setAlertData] = useState<AlertData>({
+        active: false,
+        title: '',
+        message: '',
+        type: ''
+    })
+    const [essayContent, setEssayContent] = useState<string>('');
 
-    const handleVerifyUser = async (userData: UserDataObject) => {
+    const handleVerifyUser = async (userAuthentication: UserAuthentication) => {
         try {
             const response = await fetch('/api/verifyUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ userData } as Record<string, unknown>)
+                body: JSON.stringify({ userAuthentication } as Record<string, unknown>)
             });
 
             if (!response.ok) {
@@ -54,12 +77,17 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             }
 
             const data = await response.json();
+
+            if (data?.user) {
+                setUserData(data?.user)
+            }
             return data;
         } catch (error) {
             console.error('Erro ao verificar o usuário:', error);
             return error
         }
     }
+
 
     return (
         <AppContext.Provider
@@ -69,12 +97,33 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
                 totalTime,
                 startEssay,
                 setStartEssay,
-                userData, setUserData,
+                userAuthentication, setUserAuthentication,
                 handleVerifyUser,
-                loading, setLoading
+                loading, setLoading,
+                userData, setUserData,
+                alertData,
+                setAlertData,
+                essayContent, setEssayContent
             }}
         >
             {children}
+
+            <div>
+                <CryptoModal title={alertData?.title} type={alertData?.type} isOpen={alertData?.active} closeModal={() => setAlertData({ active: false, title: '', message: '', type: '' })}>
+                    <div className='w-full align-center flex justify-center py-2 flex-col items-center'>
+                        {alertData?.type === 'success' &&
+                            <CardIcon icon='/icons/checked.png' alt='check-icon' width={55} height={55} />
+                        }
+                        {alertData?.type === 'error' &&
+                            <CardIcon icon='/icons/error.png' alt='check-icon' width={55} height={55} />
+                        }
+                        {alertData?.type === 'info' &&
+                            <CardIcon icon='/icons/info.png' alt='check-icon' width={55} height={55} />
+                        }
+                        <p className="mt-5">{alertData?.message}</p>
+                    </div>
+                </CryptoModal>
+            </div>
         </AppContext.Provider>
     )
 }

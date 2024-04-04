@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 require('env')
 
-interface UserDataObject {
+interface UserAuthenticationObject {
     email?: string,
     cpf?: string
 }
@@ -18,13 +18,13 @@ async function handler(
 
     if (req.method === 'POST') {
         try {
-            const { userData } = req.body as { userData: UserDataObject };
+            const { userAuthentication } = req.body as { userAuthentication: UserAuthenticationObject };
 
-            if (!userData || typeof userData !== 'object') {
+            if (!userAuthentication || typeof userAuthentication !== 'object') {
                 return res.status(400).json({ success: false, message: 'Invalid user data' });
             }
 
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/redacao-online/verify-student/status`, { userData });
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/redacao-online/verify-student/status`, { userData: userAuthentication });
 
             if (response?.data) {
                 const { result } = response?.data
@@ -35,7 +35,7 @@ async function handler(
 
                 console.log('result aqui', result)
                 if (result?.ok) {
-                    return res.status(200).json({ success: true, message: 'Autenticação realizada.' });
+                    return res.status(200).json({ success: true, message: 'Autenticado.', user: result?.essayData });
                 }
 
                 if (result?.essayFinished) {

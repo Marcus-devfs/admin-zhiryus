@@ -1,0 +1,1 @@
+export { CryptoModal } from '@/components/cryptoWallet/CryptoWallet'

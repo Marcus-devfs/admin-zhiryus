@@ -5,29 +5,44 @@ import { useAppContext } from "@/context/AppContext"
 import { formatCPF } from "@/help"
 import React from "react"
 
-interface UserDataObject {
+interface UserAuthenticationObject {
     email: string,
     cpf: string
 }
 
 const Authentication: React.FC = () => {
 
-    const { setCurrentStep, handleVerifyUser, setUserData, userData, loading, setLoading } = useAppContext()
+    const { setCurrentStep, handleVerifyUser, userAuthentication, setUserAuthentication, loading, setLoading, setAlertData } = useAppContext()
 
     const verifyInputs = () => {
 
-        if (!userData || typeof userData !== 'object') {
-            alert('Dados do usuário inválidos.')
+        if (!userAuthentication || typeof userAuthentication !== 'object') {
+            setAlertData({
+                active: true,
+                title: 'Verifique os dados.',
+                message: 'Dados do usuário inválidos.',
+                type: 'info'
+            })
             return false
         }
 
-        if (!('cpf' in userData) || !userData?.cpf || userData.cpf === '') {
-            alert('Preencha o cpf corretamente.')
+        if (!('cpf' in userAuthentication) || !userAuthentication?.cpf || userAuthentication.cpf === '') {
+            setAlertData({
+                active: true,
+                title: 'Verifique os dados.',
+                message: 'Preencha o cpf corretamente.',
+                type: 'info'
+            })
             return false
         }
 
-        if (!('email' in userData) || !userData?.email || userData.email === '') {
-            alert('Preencha o e-mail corretamente.')
+        if (!('email' in userAuthentication) || !userAuthentication?.email || userAuthentication.email === '') {
+            setAlertData({
+                active: true,
+                title: 'Verifique os dados.',
+                message: 'Preencha o e-mail corretamente.',
+                type: 'info'
+            })
             return false
         }
 
@@ -41,7 +56,7 @@ const Authentication: React.FC = () => {
             e.target.value = await formatCPF(str)
         }
 
-        setUserData((prevValues) => ({
+        setUserAuthentication((prevValues) => ({
             ...prevValues,
             [e.target.name]: e.target.value,
         }))
@@ -51,23 +66,31 @@ const Authentication: React.FC = () => {
         if (verifyInputs()) {
             setLoading(true)
             try {
-                const result = await handleVerifyUser(userData as UserDataObject)
+                const result = await handleVerifyUser(userAuthentication as UserAuthenticationObject)
 
                 if (result) {
                     if (!result?.success) {
-                        let message = result?.message
-                        setCurrentStep(1)
-                        alert(message)
+                        setAlertData({
+                            active: true,
+                            title: 'Ocorreu um erro.',
+                            message: result?.message,
+                            type: 'error'
+                        })
                         return
                     } else {
-                        alert(result?.message)
+                        setAlertData({
+                            active: true,
+                            title: 'Tudo Certo!',
+                            message: result?.message,
+                            type: 'success'
+                        })
+                        setCurrentStep(1)
                         return
                     }
                 } else {
                     alert('Ocorreu um erro ao verificar seu dados. Contate o Suporte, ou tente novamente mais tarde.')
                     return
                 }
-                // setCurrentStep(1)
 
             } catch (error) {
                 console.log(error)
@@ -101,7 +124,7 @@ const Authentication: React.FC = () => {
                                 <input
                                     type="text"
                                     name="email"
-                                    value={userData?.email}
+                                    value={userAuthentication?.email}
                                     onChange={handleChange}
                                     id="email-user"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 py-2.5"
@@ -115,7 +138,7 @@ const Authentication: React.FC = () => {
                             <input
                                 type="text"
                                 name="cpf"
-                                value={userData?.cpf}
+                                value={userAuthentication?.cpf}
                                 onChange={handleChange}
                                 id="cpf-user"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 py-2.5"
