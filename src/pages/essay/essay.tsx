@@ -2,6 +2,7 @@ import { Button } from '@/components/button/Button';
 import { EssayWriting } from '@/components/essayWriting/EssayWriting';
 import { TimeBarProgress } from '@/components/timeBarProgress/TimeBar';
 import { useAppContext } from '@/context/AppContext';
+import { error } from 'console';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
@@ -10,14 +11,19 @@ interface ShowDetails {
     vestibular: boolean,
 }
 
+
+interface CameraPermission {
+    active?: boolean, success?: boolean, error?: boolean
+}
+
 const EssayCompose: React.FC = () => {
-    const [essayContent, setEssayContent] = useState<string>('');
-    const { timeRemaining, setStartEssay, startEssay, userData } = useAppContext();
-    const [cameraPermission, setCameraPermission] = useState<boolean>(false);
+    const { timeRemaining, setStartEssay, startEssay, userData, essayContent, setCurrentStep, setAlertData, setTimeRemaining, totalTime} = useAppContext();
+    const [cameraPermission, setCameraPermission] = useState<CameraPermission>({ active: false, success: false, error: false });
     const [showDetails, setShowDetails] = useState<ShowDetails>({
         instruction: true,
         vestibular: false
     });
+    const [barWidth, setBarWidth] = useState<number>(100);
 
     const handleConfirmStartWriting = async () => {
         try {
@@ -37,7 +43,7 @@ const EssayCompose: React.FC = () => {
             }
 
             const data = await response.json();
-            console.log(data); 
+            console.log(data);
 
         } catch (error) {
             console.log(error)
@@ -49,18 +55,82 @@ const EssayCompose: React.FC = () => {
         const requestCameraPermission = async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                setCameraPermission(true);
-                stream.getTracks().forEach((track) => track.stop()); // Parar a câmera após a permissão ser concedida
+                setCameraPermission({ active: true, success: true, error: false });
+                // stream.getTracks().forEach((track) => track.stop()); // Parar a câmera após a permissão ser concedida
             } catch (error) {
                 console.error('Erro ao acessar a câmera:', error);
-                setCameraPermission(false);
+                setCameraPermission({ active: true, success: false, error: true });
             }
         };
 
-        if (!cameraPermission) {
+        if (!cameraPermission?.active) {
             requestCameraPermission();
         }
     }, [cameraPermission]);
+
+
+    const timeExpiredSentWriting = async () => {
+        try {
+
+            const response = await fetch('/api/sendEssayWriting', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    essayData: {
+                        id_redacao: userData?.id_redacao,
+                        redacao: essayContent,
+                        dt_realizacao: new Date()
+                    }
+                })
+            });
+
+            const data = await response.json();
+
+            if (data?.success) {
+                setAlertData({
+                    active: true,
+                    title: 'Tempo expirado.',
+                    message: 'O tempo de prova terminou. Sua redação foi enviada para análise.',
+                    type: 'info'
+                })
+                setCurrentStep(2)
+            } else {
+                setAlertData({
+                    active: true,
+                    title: 'Tempo expirado.',
+                    message: 'O tempo de prova terminou, porém ocorreu um erro ao enviar sua redação. Entre em contato com o suporte Méliès.',
+                    type: 'error'
+                })
+            }
+
+            return data
+
+        } catch (error) {
+            console.log(error)
+            return error
+        }
+    }
+
+
+    useEffect(() => {
+        if (startEssay) {
+            if (timeRemaining > 0) {
+                const startTime = Date.now();
+                const timer = setInterval(() => {
+                    const elapsedTime = Date.now() - startTime;
+                    const progressPercentage = (elapsedTime / (totalTime * 1000)) * 100;
+                    setBarWidth((prevWidth) => Math.max(prevWidth - progressPercentage, 0));
+                    setTimeRemaining((prevTime) => Math.max(prevTime - 1, 0)); // Garante que o tempo nunca seja menor que zero
+                }, 1000);
+
+                return () => clearInterval(timer);
+            } else {
+                timeExpiredSentWriting()
+            }
+        }
+    }, [timeRemaining, setCurrentStep, setTimeRemaining, startEssay]);
 
 
     return (
@@ -75,10 +145,19 @@ const EssayCompose: React.FC = () => {
                     </div>
                     {showDetails?.instruction &&
                         <div>
-                            {cameraPermission ? (
+                            {cameraPermission?.active ? (
                                 <div className='flex gap-2 items-center mt-3'>
-                                    <Image alt='icon-check-permission' src='/icons/checked.png' width={20} height={10} />
-                                    <p className='font-normal text-gray-700'>Permissão para a câmera do notebook concedida!</p>
+                                    {cameraPermission?.success ?
+                                        <>
+                                            <Image alt='icon-check-permission' src='/icons/checked.png' width={20} height={10} />
+                                            <p className='font-normal text-gray-700'>Permissão para a câmera do notebook/computador concedida!</p>
+                                        </>
+                                        :
+                                        <>
+                                            <Image alt='icon-check-permission' src='/icons/error.png' width={20} height={10} />
+                                            <p className='font-normal text-gray-700'>Sua câmera está com erro para conceder permissão.</p>
+                                        </>
+                                    }
                                 </div>
                             ) : (
                                 <p className='mb-3 font-normal text-gray-700'>Solicitando permissão para acessar a câmera...</p>
@@ -212,7 +291,7 @@ const EssayCompose: React.FC = () => {
                         {String(timeRemaining % 60).padStart(2, "0")}
                     </strong>
                 </p>
-                <TimeBarProgress />
+                <TimeBarProgress barWidth={barWidth} />
             </div>
         </>
     );

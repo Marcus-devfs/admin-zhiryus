@@ -2,66 +2,9 @@ import { useAppContext } from '@/context/AppContext';
 import React, { useState, useEffect } from 'react';
 import { Button } from '../button/Button';
 
+
 export const EssayWriting: React.FC = () => {
-    const { timeRemaining, setCurrentStep, setAlertData, userData, essayContent, setEssayContent } = useAppContext();
-
-    const charCount = essayContent?.replace(/\s/g, '')?.length;
-
-    const handleSendWriting = async () => {
-        if (charCount >= 1000 && charCount <= 5000) {
-            try {
-
-                const response = await fetch('/api/sendEssayWriting', {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        essayData: {
-                            id_redacao: userData?.id_redacao,
-                            redacao: essayContent,
-                            dt_realizacao: new Date()
-                        }
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Erro ao confirmar o início da redação');
-                }
-
-                const data = await response.json();
-
-                if (data?.success) {
-                    setAlertData({
-                        active: true,
-                        title: 'Redação enviada.',
-                        message: 'Sua redação foi enviada com sucesso.',
-                        type: 'success'
-                    })
-                    setCurrentStep(2)
-                } else {
-                    setAlertData({
-                        active: true,
-                        title: 'Ocorreu um erro.',
-                        message: 'Ocorreu um erro ao enviar sua redação. Tente novamente ou contate o suporte Méliès.',
-                        type: 'success'
-                    })
-                }
-
-            } catch (error) {
-                console.log(error)
-                return error
-            }
-        } else {
-            setAlertData({
-                active: true,
-                title: 'Quantidade de caractéres inválido.',
-                message: 'Número de caractéres inválido. A redação precisa ter no mínimo 1 mil carácteres, e no máximo 5 mil.',
-                type: 'info'
-            })
-        }
-    }
-
+    const { timeRemaining, essayContent, setEssayContent, handleSendWriting, charCount } = useAppContext();
 
     return (
         <>

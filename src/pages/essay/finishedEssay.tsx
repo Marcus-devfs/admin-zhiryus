@@ -7,9 +7,19 @@ const FinishedEssay: React.FC = () => {
     const { setCurrentStep } = useAppContext()
 
     useEffect(() => {
+        const requestCameraPermission = async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                stream.getTracks().forEach((track) => track.stop()); 
+            } catch (error) {
+                console.error('Erro ao acessar a câmera:', error);
+                return error
+            }
+        };
         setTimeout(() => {
+            requestCameraPermission()
             setCurrentStep(0)
-        }, 10000)
+        }, 150000)
     }, [])
 
     return (

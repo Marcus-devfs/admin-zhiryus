@@ -138,8 +138,8 @@ const Avaliation: React.FC = () => {
 
                 <div className="w-full h-full p-6 bg-white border border-gray-200 rounded-lg shadow container gap-3">
                     <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 mb-4">Resposta do Interessado</h1>
-                    <div className="w-full h-64 border border-gray-300 rounded-md p-2 text-slate-800">
-                        <span>{essayContent}</span>
+                    <div className="w-full border border-gray-300 rounded-md p-2 text-slate-800 overflow-auto">
+                        <span className='whitespace-pre-wrap'>{essayContent}</span>
                     </div>
                 </div>
             </div>
