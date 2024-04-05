@@ -1,200 +1,61 @@
 import { Button } from '@/components/button/Button';
+import { CardIcon } from '@/components/card';
 import { EssayWriting } from '@/components/essayWriting/EssayWriting';
 import { TimeBarProgress } from '@/components/timeBarProgress/TimeBar';
 import { useAppContext } from '@/context/AppContext';
-import { error } from 'console';
+import { formatTimeStamp } from '@/help';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
-interface ShowDetails {
-    instruction: boolean,
-    vestibular: boolean,
-}
 
-
-interface CameraPermission {
-    active?: boolean, success?: boolean, error?: boolean
-}
-
-const EssayCompose: React.FC = () => {
-    const { timeRemaining, setStartEssay, startEssay, userData, essayContent, setCurrentStep, setAlertData, setTimeRemaining, totalTime} = useAppContext();
-    const [cameraPermission, setCameraPermission] = useState<CameraPermission>({ active: false, success: false, error: false });
-    const [showDetails, setShowDetails] = useState<ShowDetails>({
-        instruction: true,
-        vestibular: false
-    });
-    const [barWidth, setBarWidth] = useState<number>(100);
-
-    const handleConfirmStartWriting = async () => {
-        try {
-            setStartEssay(true)
-            setShowDetails({ instruction: false, vestibular: false })
-
-            const response = await fetch('/api/confirmStartWriting', {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ writingId: userData?.id_redacao })
-            });
-
-            if (!response.ok) {
-                throw new Error('Erro ao confirmar o início da redação');
-            }
-
-            const data = await response.json();
-            console.log(data);
-
-        } catch (error) {
-            console.log(error)
-            return error
-        }
-    }
+const Avaliation: React.FC = () => {
+    const { essayContent, userData } = useAppContext();
+    const [cameraPermission, setCameraPermission] = useState<boolean>(false);
+    const [showDetails, setShowDetails] = useState<boolean>(false)
 
     useEffect(() => {
         const requestCameraPermission = async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                setCameraPermission({ active: true, success: true, error: false });
+                setCameraPermission(true);
                 // stream.getTracks().forEach((track) => track.stop()); // Parar a câmera após a permissão ser concedida
             } catch (error) {
                 console.error('Erro ao acessar a câmera:', error);
-                setCameraPermission({ active: true, success: false, error: true });
+                setCameraPermission(false);
             }
         };
 
-        if (!cameraPermission?.active) {
+        if (!cameraPermission) {
             requestCameraPermission();
         }
     }, [cameraPermission]);
 
 
-    const timeExpiredSentWriting = async () => {
-        try {
-
-            const response = await fetch('/api/sendEssayWriting', {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    essayData: {
-                        id_redacao: userData?.id_redacao,
-                        redacao: essayContent,
-                        dt_realizacao: new Date()
-                    }
-                })
-            });
-
-            const data = await response.json();
-
-            if (data?.success) {
-                setAlertData({
-                    active: true,
-                    title: 'Tempo expirado.',
-                    message: 'O tempo de prova terminou. Sua redação foi enviada para análise.',
-                    type: 'info'
-                })
-                setCurrentStep(2)
-            } else {
-                setAlertData({
-                    active: true,
-                    title: 'Tempo expirado.',
-                    message: 'O tempo de prova terminou, porém ocorreu um erro ao enviar sua redação. Entre em contato com o suporte Méliès.',
-                    type: 'error'
-                })
-            }
-
-            return data
-
-        } catch (error) {
-            console.log(error)
-            return error
-        }
-    }
-
-
-    useEffect(() => {
-        if (startEssay) {
-            if (timeRemaining > 0) {
-                const startTime = Date.now();
-                const timer = setInterval(() => {
-                    const elapsedTime = Date.now() - startTime;
-                    const progressPercentage = (elapsedTime / (totalTime * 1000)) * 100;
-                    setBarWidth((prevWidth) => Math.max(prevWidth - progressPercentage, 0));
-                    setTimeRemaining((prevTime) => Math.max(prevTime - 1, 0)); // Garante que o tempo nunca seja menor que zero
-                }, 1000);
-
-                return () => clearInterval(timer);
-            } else {
-                timeExpiredSentWriting()
-            }
-        }
-    }, [timeRemaining, setCurrentStep, setTimeRemaining, startEssay]);
-
-
     return (
         <>
+
+            <div className='flex px-6 py-3 items-center justify-center fixed top-5 left-5 bg gap-4 rounded-lg bg-white shadow border border-green-500'>
+                <CardIcon icon='/icons/avaliation_icon.png' alt='icon-avaliation' height={25} width={25} />
+                <p className='font-bold'>AMBIENTE DO AVALIADOR</p>
+            </div>
             <div className='flex flex-col w-full items-center justify-start gap-6 py-8'>
-                <div className={`w-full p-6 bg-white border border-gray-200 rounded-lg shadow container flex-col flex`}>
-                    <div className='flex w-full justify-between' onClick={() => setShowDetails({ ...showDetails, instruction: !showDetails?.instruction })}>
-                        <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Instruções da Redação</h1>
-                        <div>
-                            <Image alt='icon-gray' src='/icons/gray_arrow_down.png' width={30} height={20} className='' />
-                        </div>
-                    </div>
-                    {showDetails?.instruction &&
-                        <div>
-                            {cameraPermission?.active ? (
-                                <div className='flex gap-2 items-center mt-3'>
-                                    {cameraPermission?.success ?
-                                        <>
-                                            <Image alt='icon-check-permission' src='/icons/checked.png' width={20} height={10} />
-                                            <p className='font-normal text-gray-700'>Permissão para a câmera do notebook/computador concedida!</p>
-                                        </>
-                                        :
-                                        <>
-                                            <Image alt='icon-check-permission' src='/icons/error.png' width={20} height={10} />
-                                            <p className='font-normal text-gray-700'>Sua câmera está com erro para conceder permissão.</p>
-                                        </>
-                                    }
-                                </div>
-                            ) : (
-                                <p className='mb-3 font-normal text-gray-700'>Solicitando permissão para acessar a câmera...</p>
-                            )}
 
-                            <div className='mt-5 flex flex-col gap-2'>
-                                <p className='font-normal text-gray-700'>Nome: <strong>{userData?.nome}.</strong></p>
-                                <p className='font-normal text-gray-700'>Curso: <strong>{userData?.nome_turma} - {userData?.nome_curso}_{userData?.nivel_curso} {userData?.modalidade_curso}.</strong></p>
+                <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow container gap-3">
+                    <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 mb-4">Dados do Interessado</h1>
+                    <p className='font-normal text-gray-700'>Nome: <strong>{userData?.nome}.</strong></p>
+                    <p className='font-normal text-gray-700'>Curso: <strong>{userData?.nome_turma} - {userData?.nome_curso}_{userData?.nivel_curso} {userData?.modalidade_curso}.</strong></p>
+                    <p className='font-normal text-gray-700'>Data do envio: <strong>{formatTimeStamp(userData?.dt_realizacao, true)}.</strong></p>
 
-                                <h1 className='font-bold text-gray-700 mt-5'>INSTRUÇÕES:</h1>
-
-                                <p className='font-normal text-gray-700'>1. A prova de redação dissertativa é totalmente online;</p>
-                                <p className='font-normal text-gray-700'>2. A partir deste momento, você tem até 3 (três) horas para produzir e enviar a prova completa;</p>
-                                <p className='font-normal text-gray-700'>3. Caso não envie, o sistema fechará automaticamente e será validado o que estiver pronto até o momento;</p>
-                                <p className='font-normal text-gray-700'>4. Você não pode mudar nem atualizar a tela, pois o sistema enviará automaticamente o texto até o momento que você o desenvolveu;</p>
-                                <p className='font-normal text-gray-700'>5. Sua redação deverá ter no mínimo 1.000 (um mil) e no máximo 5.000 (cinco mil) caracteres (sem espaços);</p>
-                                <p className='font-normal text-gray-700'>6. No topo da página existe um contador de tempo, com a contagem regressiva para fechar o sistema; tem também um contador de caracteres e o botão salvar, que só é ativado após a contagem mínima de caracteres;</p>
-                                <p className='font-normal text-gray-700'>7. Ao terminar sua prova, <b>clique no botão salvar do topo da página para finalizar e enviar</b>;</p>
-                                <p className='font-normal text-gray-700'>8. Boa prova!</p>
-
-                                <h1 className="text-center mt-2 text-gray-700">ATENÇÃO!</h1>
-                                <h1 className="text-justify mb-2 text-gray-700">
-                                    Antes de escrever sua redação, leia o conjunto de textos a seguir como motivadores para suas ideias e reflexões. Não há obrigatoriedade de escolher ou fazer referência a nenhum deles. O tema de redação da prova está no final deste conjunto de textos.
-                                </h1>
-                            </div>
-
-                        </div>}
                 </div>
 
                 <div className={`w-full p-6 bg-white border border-gray-200 rounded-lg shadow container flex-col flex`}>
-                    <div className='flex w-full justify-between' onClick={() => setShowDetails({ ...showDetails, vestibular: !showDetails?.vestibular })}>
+                    <div className='flex w-full justify-between' onClick={() => setShowDetails(!showDetails)}>
                         <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Vestibular Méliés 2024.2</h1>
                         <div>
                             <Image alt='icon-gray' src='/icons/gray_arrow_down.png' width={30} height={20} className='' />
                         </div>
                     </div>
-                    {showDetails?.vestibular &&
+                    {showDetails &&
                         <div className='flex flex-col py-6 px-3'>
                             <div className="mb-8 border border-gray-200">
                                 <div className='flex w-full bg-gray-200 px-3 py-3'>
@@ -272,29 +133,18 @@ const EssayCompose: React.FC = () => {
                                     </p>
                                 </div>
                             </div>
-
-                            {!startEssay && <div className='w-full flex justify-end items-end'>
-                                <Button text='Começar' onClick={() => handleConfirmStartWriting()} disabled={startEssay} />
-                            </div>}
-
                         </div>}
                 </div>
 
-                {startEssay && <EssayWriting />}
-            </div>
-            <div className='w-full h-14 flex flex-col fixed bottom-0 pt-2 gap-2 align-center justify-center border bg-white'>
-                <p className='font-normal text-gray-700 text-center'>
-                    Tempo Restante:{" "}
-                    <strong>
-                        {String(Math.floor(timeRemaining / 3600)).padStart(2, "0")}:
-                        {String(Math.floor((timeRemaining % 3600) / 60)).padStart(2, "0")}:
-                        {String(timeRemaining % 60).padStart(2, "0")}
-                    </strong>
-                </p>
-                <TimeBarProgress barWidth={barWidth} />
+                <div className="w-full h-full p-6 bg-white border border-gray-200 rounded-lg shadow container gap-3">
+                    <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 mb-4">Resposta do Interessado</h1>
+                    <div className="w-full border border-gray-300 rounded-md p-2 text-slate-800 overflow-auto">
+                        <span className='whitespace-pre-wrap'>{essayContent}</span>
+                    </div>
+                </div>
             </div>
         </>
     );
 };
 
-export default EssayCompose;
+export default Avaliation;

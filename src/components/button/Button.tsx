@@ -2,14 +2,14 @@ import React from "react"
 
 interface PropsButton {
     text: string,
-    onClick: React.MouseEventHandler<HTMLButtonElement>,
+    onClick?: React.MouseEventHandler<HTMLButtonElement>,
     disabled?: boolean,
     isLoading?: boolean,
     arrowIcon?: boolean,
 
 }
 
-export const Button: React.FC<PropsButton> = ({ text = "read more", onClick = () => { }, disabled = false, isLoading = false, arrowIcon = false }) => {
+export const Button: React.FC<PropsButton> = ({ text = "read more", onClick, disabled = false, isLoading = false, arrowIcon = false }) => {
     return (
         <div>
             <button
