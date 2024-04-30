@@ -17,7 +17,7 @@ interface CameraPermission {
 }
 
 const EssayCompose: React.FC = () => {
-    const { timeRemaining, setStartEssay, startEssay, userData, essayContent, setCurrentStep, setAlertData, setTimeRemaining, totalTime} = useAppContext();
+    const { timeRemaining, setStartEssay, startEssay, userData, essayContent, setCurrentStep, setAlertData, setTimeRemaining, totalTime } = useAppContext();
     const [cameraPermission, setCameraPermission] = useState<CameraPermission>({ active: false, success: false, error: false });
     const [showDetails, setShowDetails] = useState<ShowDetails>({
         instruction: true,
@@ -202,10 +202,11 @@ const EssayCompose: React.FC = () => {
                                 </div>
                                 <div className='flex w-full flex-col gap-4 px-3 py-3'>
                                     <p className="text-lg">
-                                        As profissões digitais são aquelas que envolvem o uso da tecnologia e da internet como meio de trabalho. Essas profissões têm ganhado cada vez mais destaque, principalmente nos últimos anos, devido ao crescimento do mercado digital (...) e as empresas estão se adaptando a essa realidade, buscando profissionais capacitados para atuar nesse ambiente. Além disso, o mercado de trabalho para as profissões digitais tende a crescer ainda mais nos próximos anos, e a demanda por esses profissionais só tende a aumentar.
+                                        Texto 1
+                                        O processo de criação do artista é a parte mais valiosa da obra. Lógico que o produto final é importante, mas é durante o início e o término da obra que estão suas inquietações, erros e acertos, dúvidas e certezas, vontade de mudar tudo, e o mais importante: os seus questionamentos! Todo artista se pergunta no seu processo de criação, ou pelo menos deveria se perguntar: o eu quero dizer com essa obra?
                                     </p>
                                     <p className="text-sm text-gray-600">
-                                        RODRIGUEZ, Basília. Direitos iguais, nem mais, nem menos. <br /> In: <a href="https://blog.lojaintegrada.com.br/o-mundo-online-e-a-importancia-das-profissoes-digitais" target="_blank" className="text-blue-600">SPAGNUOLO, Raphael. O mundo online e as profissões digitais.</a> Acessado em 10 de outubro de 2023.
+                                        BULHÃO, Layo. O que é processo de criação. Disponível em:  <br /> In: <a href="http://driartessempre.blogspot.com.br" target="_blank" className="text-blue-600">driartessempre.</a> Acesso em: 28 de março de 2024.
                                     </p>
                                 </div>
                             </div>
@@ -216,10 +217,14 @@ const EssayCompose: React.FC = () => {
                                 </div>
                                 <div className='flex w-full flex-col gap-4 px-3 py-3'>
                                     <p className="text-lg">
-                                        A realidade do futuro do trabalho e da nossa sociedade vem sendo representada há muito tempo por filmes, séries, e até mesmo desenhos animados. Por isso, muitas pessoas pensam que o destino do mundo corporativo estará tomado por robôs e que os humanos sofrerão com o desemprego. Que as máquinas ocuparão o lugar de mão de obra humana, isso não é novidade para ninguém. Entretanto, não são os empregos que vão deixar de existir: as atividades é que serão adaptadas e, dessa forma, dividiremos o espaço com a tecnologia.
-                                    </p>
+                                        Um personagem bem construído é fundamental para o funcionamento de uma história e de sua narrativa. Um autor deve, através do roteiro, saber criar personagens marcantes que consigam provocar na audiência as emoções desejadas, sejam elas de atração ou de repulsa, amor ou ódio, preocupação ou indiferença.</p>
                                     <p className="text-sm text-gray-600">
-                                        <a href="https://www.roberthalf.com.br/blog/tendencias/futuro-do-trabalho-quais-tendencias-e-como-preparar-empresa-rc" target="_blank" className="text-blue-600">HALF, Robert. Futuro do trabalho: quais as tendências e como preparar a empresa?</a> Disponível in: <a href="https://www.roberthalf.com.br/blog/tendencias/futuro-do-trabalho-quais-tendencias-e-como-preparar-empresa-rc" target="_blank" className="text-blue-600">https://www.roberthalf.com.br/blog/tendencias/futuro-do-trabalho-quais-tendencias-e-como-preparar-empresa-rc</a>. Acessado em 10 de outubro de 2023.
+                                        MASSARI, Sandro. A criação de personagens.
+                                        Disponível em:
+                                        <a href="http://www.massarani.com.br/rot-criar-personagens-roteiro-cinema.html" target="_blank" className="text-blue-600">
+                                            MASSARI, Sandro. A criação de personagens.
+                                        </a>
+                                        Acesso em: 28 de março de 2024
                                     </p>
                                 </div>
 
@@ -231,10 +236,10 @@ const EssayCompose: React.FC = () => {
                                 </div>
                                 <div className='flex w-full flex-col gap-4 px-3 py-3'>
                                     <p className="text-lg">
-                                        A transformação digital traz consigo desafios como a segurança de dados, a integração de tecnologias legadas e a necessidade de habilidades especializadas. No entanto, também oferece oportunidades incríveis para inovação, eficiência e crescimento. Por isso, as profissões do futuro, em geral, são estrategicamente importantes para empresas e setores em expansão, o que resulta em alta demanda ou alta probabilidade de demanda futura. Isso oferece boas oportunidades profissionais para aqueles que optam por essas carreiras.
+                                        A personagem é um ser fictício, — expressão que soa como paradoxo. De fato, como pode uma ficção ser? Como pode existir o que não existe? No entanto, a criação literária repousa sobre este paradoxo, e o problema da verossimilhança no romance depende desta possibilidade de um ser fictício, isto é, algo que, sendo uma criação da fantasia, comunica a impressão da mais lídima verdade existencial. Podemos dizer, portanto, que o romance se baseia, antes de mais nada, num certo tipo de relação entre o ser vivo e o ser fictício, manifestada através da personagem, que é a concretização deste.
                                     </p>
                                     <p className="text-sm text-gray-600">
-                                        <a href="https://www.portaldaindustria.com.br/industria-de-a-z/profissoes-do-futuro/" target="_blank" className="text-blue-600">Profissões do futuro.</a> In: <a href="https://www.portaldaindustria.com.br/industria-de-a-z/profissoes-do-futuro/" target="_blank" className="text-blue-600">https://www.portaldaindustria.com.br/industria-de-a-z/profissoes-do-futuro/</a>. Acessado em 10 de outubro de 2023.
+                                        CANDIDO, Antônio. A Personagem do Romance. In: A Personagem de Ficção. Perspectiva: São Paulo
                                     </p>
                                 </div>
                             </div>
@@ -245,10 +250,11 @@ const EssayCompose: React.FC = () => {
                                 </div>
                                 <div className='flex w-full flex-col gap-4 px-3 py-3'>
                                     <p className="text-lg">
-                                        A arte está entre os campos de expressão da subjetividade humana há milhões de anos. Ao longo da história, muitos artistas trouxeram contribuições significativas e novos olhares para retratar sentimentos cotidianos e as mais variadas impressões. Nesse sentido, os suportes para a expressão artística foram se adaptando e, nas últimas décadas, com o advento da internet, nasceram as artes digitais. Profissão Artista Digital: como seguir essa carreira.
+                                        Nildo Viana (2003) diferencia herói de super-herói. O herói é alguém com habilidades especiais e com grande coragem, que pode ser alguém da vida real e o super-herói é alguém com superpoderes, um personagem fictício inicialmente dos gêneros de quadrinhos de superaventuras. O herói como força mítica existe desde a antiguidade e representa o ser humano e suas superações.
                                     </p>
                                     <p className="text-sm text-gray-600">
-                                        In: <a href="https://www.sos.com.br/noticias/guia-de-profissao/profissao-artista-digital-como-seguir-essa-carreira" target="_blank" className="text-blue-600">https://www.sos.com.br/noticias/guia-de-profissao/profissao-artista-digital-como-seguir-essa-carreira</a>. Acessado em 10 de outubro de 2023.
+                                        MODESTO, Sandro Luiz. Reflexões Sobre Os Super-Heróis na Educação e Suas Potencialidades.
+                                        In: <a href=": https://periodicos2.uesb.br " target="_blank" className="text-blue-600">: https://periodicos2.uesb.br </a>. Acessado em 28 de março de 2024.
                                     </p>
                                 </div>
                             </div>
@@ -259,19 +265,37 @@ const EssayCompose: React.FC = () => {
                                 </div>
                                 <div className='flex w-full flex-col gap-4 px-3 py-3'>
                                     <p className="text-lg">
-                                        Há quem diga que todos têm um lado artístico. Mas, independente do tipo de arte que você pratica, existe uma linha que separa os amadores dos artistas profissionais. O artista digital, por exemplo, desempenha um papel vital na criação, inovação e comunicação visual na sociedade tecnológica. Suas contribuições não apenas enriquecem a cultura visual, mas também moldam a forma como interagimos com a tecnologia e compreendemos o mundo ao nosso redor. Como ser um artista.
+                                        A sociedade moderna se identifica mais facilmente com personagens controversos e, muitas vezes, na vida real, eleva ao posto de herói figuras cujos erros e defeitos morais – por piores que sejam – são ignorados em prol da luta contra um suposto inimigo.
                                     </p>
                                     <p className="text-lg">
-                                        Como você observa, o mercado de trabalho está em frequente mudança e ele se impõe ao exigir um novo perfil de profissional: aquele que precisa se capacitar para ampliar sua visão tanto para dentro como para fora da empresa. O futuro do profissional para esse mercado, pontuado por novas tecnologias, é promissor, mas também desafiador. Além disso, sabemos bem a importância da estabilidade financeira e que este é um dos principais motivos para o nosso esforço diário. Mas, e além disso? Quais são as suas aspirações e motivações profissionais, na área que pretende se especializar? Como você se vê profissionalmente em um futuro próximo?
+                                        (…) Você já deve ter notado o sucesso das obras que colocam anti-heróis como protagonistas. Diferentemente do herói infalível, bom, que se sacrifica em nome de causas nobres, o anti-herói é um personagem que erra, toma atitudes que julgamos imorais e não possui virtudes geralmente atribuídas aos heróis (como coragem, resiliência, justiça). É natural que tenhamos mais facilidade de nos identificarmos com um anti-herói como Deadpool – que fala palavrão e é egocêntrico, sarcástico e vingativo – do que com o Super-homem, que sequer é deste planeta. Os heróis modernos erram muito, mas geralmente os perdoamos, pois acreditamos na causa que defendem, mesmo que os meios para alcançá-la sejam altamente questionáveis.
                                     </p>
                                     <p className="text-sm text-gray-600">
-                                        In: <a href="https://www.universidadedointercambio.com/como-ser-um-artista" target="_blank" className="text-blue-600">https://www.universidadedointercambio.com/como-ser-um-artista</a>. Acessado em 10 de outubro de 2023.
-                                    </p>
-                                    <p className="font-bold text-center text-lg bg-yellow-200 p-4 mt-5">
-                                        ATENÇÃO!! Não é permitida a utilização de ferramentas IA para a produção do seu texto!
+                                        MIRANDA, Lucas Mascaranhas de. A Fronteira tênue entre heróis e vilões. In: Ciência e Cultura Pop. Ciência Hoje.
+                                        In: <a href="https://cienciahoje.org.br/artigo/a-fronteira-tenue-entre-herois-e-viloes" target="_blank" className="text-blue-600">https://cienciahoje.org.br/artigo/a-fronteira-tenue-entre-herois-e-viloes</a>. Acessado em 28 de março de 2024.
                                     </p>
                                 </div>
                             </div>
+
+
+                            <div className='flex w-full flex-col gap-4 px-3 py-3 mb-5 mt-5'>
+                                <p className="text-lg">
+                                    É do conhecimento de todos que, quando estamos diante de grandes desafios ou algum tipo de problema, buscamos um “salvador”, um “herói”, que resolverá todos os nossos conflitos.
+                                    Na linha desse raciocínio, você se identifica mais com um herói ou anti-herói?  E se você fosse um personagem fictício? Em qual personagem você se inspiraria? Por quê?
+                                    Considerando esses questionamentos, queremos conhecer seu ponto de vista; por isso, propomos o seguinte tema:
+                                </p>
+                            </div>
+
+                            <div className='flex w-full flex-col gap-4 px-3 py-3 mb-5 mt-5'>
+                                <h1 className="text-2xl font-bold text-center">
+                                    SENDO UM PERSONAGEM FICTÍCIO,
+                                    O QUE FARIA PARA RESOLVER CONFLITOS NA SOCIEDADE NA QUAL VIVEMOS?
+                                </h1>
+                            </div>
+
+                            <p className="font-bold text-center text-lg bg-yellow-200 p-4 mt-5">
+                                ATENÇÃO!! Não é permitida a utilização de ferramentas IA para a produção do seu texto!
+                            </p>
 
                             {!startEssay && <div className='w-full flex justify-end items-end'>
                                 <Button text='Começar' onClick={() => handleConfirmStartWriting()} disabled={startEssay} />
@@ -282,10 +306,10 @@ const EssayCompose: React.FC = () => {
 
                 {startEssay && <EssayWriting />}
             </div>
-            <div className='w-full h-14 flex flex-col fixed bottom-0 pt-2 gap-2 align-center justify-center border bg-white'>
-                <p className='font-normal text-gray-700 text-center'>
+            <div className='w-full h-16 flex flex-col fixed bottom-0 pt-2 gap-2 align-center justify-center border bg-white'>
+                <p className='font-bold text-gray-700 text-center text-lg'>
                     Tempo Restante:{" "}
-                    <strong>
+                    <strong className='text-red-600'>
                         {String(Math.floor(timeRemaining / 3600)).padStart(2, "0")}:
                         {String(Math.floor((timeRemaining % 3600) / 60)).padStart(2, "0")}:
                         {String(timeRemaining % 60).padStart(2, "0")}
