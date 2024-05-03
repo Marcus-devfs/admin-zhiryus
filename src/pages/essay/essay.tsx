@@ -204,10 +204,10 @@ const EssayCompose: React.FC = () => {
                     <div className={`${showDetails?.vestibular ? 'flex' : 'hidden'} flex-col py-6 px-3 transition ease-in-out delay-150`}>
                         <div className="mb-8 border border-gray-200">
                             <div className='flex w-full bg-gray-200 px-3 py-3'>
-                                <h1 className="text-2xl font-bold">1º Texto</h1>
+                                <h1 className="text-2xl font-bold text-gray-600">1º Texto</h1>
                             </div>
                             <div className='flex w-full flex-col gap-4 px-3 py-3'>
-                                <p className="text-lg">
+                                <p className="text-lg text-gray-600">
                                     Texto 1
                                     O processo de criação do artista é a parte mais valiosa da obra. Lógico que o produto final é importante, mas é durante o início e o término da obra que estão suas inquietações, erros e acertos, dúvidas e certezas, vontade de mudar tudo, e o mais importante: os seus questionamentos! Todo artista se pergunta no seu processo de criação, ou pelo menos deveria se perguntar: o eu quero dizer com essa obra?
                                 </p>
@@ -219,12 +219,12 @@ const EssayCompose: React.FC = () => {
 
                         <div className="mb-8 border border-gray-200">
                             <div className='flex w-full bg-gray-200 px-3 py-3'>
-                                <h1 className="text-2xl font-bold">2º Texto</h1>
+                                <h1 className="text-2xl font-bold text-gray-600">2º Texto</h1>
                             </div>
                             <div className='flex w-full flex-col gap-4 px-3 py-3'>
-                                <p className="text-lg">
+                                <p className="text-lg text-gray-600">
                                     Um personagem bem construído é fundamental para o funcionamento de uma história e de sua narrativa. Um autor deve, através do roteiro, saber criar personagens marcantes que consigam provocar na audiência as emoções desejadas, sejam elas de atração ou de repulsa, amor ou ódio, preocupação ou indiferença.</p>
-                                <p className="text-sm text-gray-600">
+                                <p className="text-sm text-gray-600 text-gray-600">
                                     MASSARI, Sandro. A criação de personagens.
                                     Disponível em:
                                     <a href="http://www.massarani.com.br/rot-criar-personagens-roteiro-cinema.html" target="_blank" className="text-blue-600">
@@ -238,10 +238,10 @@ const EssayCompose: React.FC = () => {
 
                         <div className="mb-8 border border-gray-200">
                             <div className='flex w-full bg-gray-200 px-3 py-3'>
-                                <h1 className="text-2xl font-bold">3º Texto</h1>
+                                <h1 className="text-2xl font-bold text-gray-600">3º Texto</h1>
                             </div>
                             <div className='flex w-full flex-col gap-4 px-3 py-3'>
-                                <p className="text-lg">
+                                <p className="text-lg text-gray-600">
                                     A personagem é um ser fictício, — expressão que soa como paradoxo. De fato, como pode uma ficção ser? Como pode existir o que não existe? No entanto, a criação literária repousa sobre este paradoxo, e o problema da verossimilhança no romance depende desta possibilidade de um ser fictício, isto é, algo que, sendo uma criação da fantasia, comunica a impressão da mais lídima verdade existencial. Podemos dizer, portanto, que o romance se baseia, antes de mais nada, num certo tipo de relação entre o ser vivo e o ser fictício, manifestada através da personagem, que é a concretização deste.
                                 </p>
                                 <p className="text-sm text-gray-600">
@@ -252,10 +252,10 @@ const EssayCompose: React.FC = () => {
 
                         <div className="mb-8 border border-gray-200">
                             <div className='flex w-full bg-gray-200 px-3 py-3'>
-                                <h1 className="text-2xl font-bold">4º Texto</h1>
+                                <h1 className="text-2xl font-bold text-gray-600">4º Texto</h1>
                             </div>
                             <div className='flex w-full flex-col gap-4 px-3 py-3'>
-                                <p className="text-lg">
+                                <p className="text-lg text-gray-600">
                                     Nildo Viana (2003) diferencia herói de super-herói. O herói é alguém com habilidades especiais e com grande coragem, que pode ser alguém da vida real e o super-herói é alguém com superpoderes, um personagem fictício inicialmente dos gêneros de quadrinhos de superaventuras. O herói como força mítica existe desde a antiguidade e representa o ser humano e suas superações.
                                 </p>
                                 <p className="text-sm text-gray-600">
@@ -267,13 +267,13 @@ const EssayCompose: React.FC = () => {
 
                         <div className="mb-8 border border-gray-200">
                             <div className='flex w-full bg-gray-200 px-3 py-3'>
-                                <h1 className="text-2xl font-bold">5º Texto</h1>
+                                <h1 className="text-2xl font-bold text-gray-600">5º Texto</h1>
                             </div>
                             <div className='flex w-full flex-col gap-4 px-3 py-3'>
-                                <p className="text-lg">
+                                <p className="text-lg text-gray-600">
                                     A sociedade moderna se identifica mais facilmente com personagens controversos e, muitas vezes, na vida real, eleva ao posto de herói figuras cujos erros e defeitos morais – por piores que sejam – são ignorados em prol da luta contra um suposto inimigo.
                                 </p>
-                                <p className="text-lg">
+                                <p className="text-lg text-gray-600">
                                     (…) Você já deve ter notado o sucesso das obras que colocam anti-heróis como protagonistas. Diferentemente do herói infalível, bom, que se sacrifica em nome de causas nobres, o anti-herói é um personagem que erra, toma atitudes que julgamos imorais e não possui virtudes geralmente atribuídas aos heróis (como coragem, resiliência, justiça). É natural que tenhamos mais facilidade de nos identificarmos com um anti-herói como Deadpool – que fala palavrão e é egocêntrico, sarcástico e vingativo – do que com o Super-homem, que sequer é deste planeta. Os heróis modernos erram muito, mas geralmente os perdoamos, pois acreditamos na causa que defendem, mesmo que os meios para alcançá-la sejam altamente questionáveis.
                                 </p>
                                 <p className="text-sm text-gray-600">
@@ -285,7 +285,7 @@ const EssayCompose: React.FC = () => {
 
 
                         <div className='flex w-full flex-col gap-4 px-3 py-3 mb-5 mt-5'>
-                            <p className="text-lg">
+                            <p className="text-lg text-gray-600">
                                 É do conhecimento de todos que, quando estamos diante de grandes desafios ou algum tipo de problema, buscamos um “salvador”, um “herói”, que resolverá todos os nossos conflitos.
                                 Na linha desse raciocínio, você se identifica mais com um herói ou anti-herói?  E se você fosse um personagem fictício? Em qual personagem você se inspiraria? Por quê?
                                 Considerando esses questionamentos, queremos conhecer seu ponto de vista; por isso, propomos o seguinte tema:
@@ -293,13 +293,13 @@ const EssayCompose: React.FC = () => {
                         </div>
 
                         <div className='flex w-full flex-col gap-4 px-3 py-3 mb-5 mt-5'>
-                            <h1 className="text-2xl font-bold text-center">
+                            <h1 className="text-2xl font-bold text-center text-gray-600">
                                 SENDO UM PERSONAGEM FICTÍCIO,
                                 O QUE FARIA PARA RESOLVER CONFLITOS NA SOCIEDADE NA QUAL VIVEMOS?
                             </h1>
                         </div>
 
-                        <p className="font-bold text-center text-lg bg-yellow-200 p-4 mt-5">
+                        <p className="font-bold text-center text-lg bg-yellow-200 p-4 mt-5 text-gray-600">
                             ATENÇÃO!! Não é permitida a utilização de ferramentas IA para a produção do seu texto!
                         </p>
 

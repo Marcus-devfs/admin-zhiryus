@@ -18,14 +18,23 @@ export default function Home() {
   const router = useRouter()
   const writingId = router?.query?.key_writing_user as string | null;
 
-
-
   useEffect(() => {
     const handleWritingUser = async (writingId: string) => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/redacao-online/${writingId}`)
-        if (response?.data) {
-          const { data } = response
+
+        const response = await fetch(`/api/avaliationWriting?writingId=${writingId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao confirmar o início da redação');
+        }
+
+        const data = await response.json();
+        if (data) {
           setUserData(data)
           setEssayContent(data?.redacao)
         } else {
