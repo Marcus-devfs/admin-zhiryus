@@ -96,6 +96,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     const handleSendWriting = async () => {
         if (charCount >= 1000 && charCount <= 5000) {
+            setLoading(true)
             try {
 
                 const response = await fetch('/api/sendEssayWriting', {
@@ -140,6 +141,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             } catch (error) {
                 console.log(error)
                 return error
+            } finally {
+                setLoading(false)
             }
         } else {
             setAlertData({

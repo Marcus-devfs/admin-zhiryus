@@ -260,7 +260,7 @@ const EssayCompose: React.FC = () => {
                                 </p>
                                 <p className="text-sm text-gray-600">
                                     MODESTO, Sandro Luiz. Reflexões Sobre Os Super-Heróis na Educação e Suas Potencialidades.
-                                    In: <a href=": https://periodicos2.uesb.br " target="_blank" className="text-blue-600">: https://periodicos2.uesb.br </a>. Acessado em 28 de março de 2024.
+                                    In: <a href="https://periodicos2.uesb.br " target="_blank" className="text-blue-600">: https://periodicos2.uesb.br </a>. Acessado em 28 de março de 2024.
                                 </p>
                             </div>
                         </div>
