@@ -84,7 +84,7 @@ export default function Home() {
   ]
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-8">
+    <div className="min-h-screen flex items-center justify-center py-8 pb-20">
       <div
         className="z-[-1] fixed top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-[url('/background/imagem_prova.jpg')]"
       />

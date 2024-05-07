@@ -33,7 +33,6 @@ async function handler(
                     return res.status(200).json({ success: false, message: 'Usuário não existe' });
                 }
 
-                console.log('result aqui', result)
                 if (result?.ok) {
                     return res.status(200).json({ success: true, message: 'Autenticado.', user: result?.essayData });
                 }

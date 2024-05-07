@@ -43,7 +43,7 @@ const Avaliation: React.FC = () => {
 
             <div className='flex px-6 py-3 items-center justify-center fixed top-5 left-5 bg gap-4 rounded-lg bg-white shadow border border-green-500'>
                 <CardIcon icon='/icons/avaliation_icon.png' alt='icon-avaliation' height={25} width={25} />
-                <p className='font-bold'>AMBIENTE DO AVALIADOR</p>
+                <p className='font-bold text-gray-700'>AMBIENTE DO AVALIADOR</p>
             </div>
             <div className='flex flex-col w-full items-center justify-start gap-6 py-8'>
 

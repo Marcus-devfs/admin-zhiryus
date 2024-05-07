@@ -46,8 +46,8 @@ interface AlertData {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     const [currentStep, setCurrentStep] = useState<number>(0)
-    // const totalTime = 10800
-    const totalTime = 200
+    const totalTime = 10800
+    // const totalTime = 200
     const [timeRemaining, setTimeRemaining] = useState<number>(totalTime);
     const [startEssay, setStartEssay] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
