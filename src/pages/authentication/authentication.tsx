@@ -7,7 +7,7 @@ import React from "react"
 
 interface UserAuthenticationObject {
     email: string,
-    cpf: string
+    password: string
 }
 
 const Authentication: React.FC = () => {
@@ -26,11 +26,11 @@ const Authentication: React.FC = () => {
             return false
         }
 
-        if (!('cpf' in userAuthentication) || !userAuthentication?.cpf || userAuthentication.cpf === '') {
+        if (!('password' in userAuthentication) || !userAuthentication?.password || userAuthentication.password === '') {
             setAlertData({
                 active: true,
                 title: 'Verifique os dados.',
-                message: 'Preencha o cpf corretamente.',
+                message: 'Preencha a password corretamente.',
                 type: 'info'
             })
             return false
@@ -51,11 +51,6 @@ const Authentication: React.FC = () => {
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 
-        if (e.target.name == 'cpf') {
-            let str = e.target.value;
-            e.target.value = await formatCPF(str)
-        }
-
         setUserAuthentication((prevValues) => ({
             ...prevValues,
             [e.target.name]: e.target.value,
@@ -66,7 +61,8 @@ const Authentication: React.FC = () => {
         if (verifyInputs()) {
             setLoading(true)
             try {
-                const result = await handleVerifyUser(userAuthentication as UserAuthenticationObject)
+                // const result = await handleVerifyUser(userAuthentication as UserAuthenticationObject)
+                const result = { success: true, message: 'Tudo certo!' };
 
                 if (result) {
                     if (!result?.success) {
@@ -84,7 +80,7 @@ const Authentication: React.FC = () => {
                             message: result?.message,
                             type: 'success'
                         })
-                        setCurrentStep(1)
+                        await handleVerifyUser(userAuthentication)
                         return
                     }
                 } else {
@@ -102,53 +98,64 @@ const Authentication: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col gap-12">
-            <Card gap={2}>
-                <CardTitle text="Seja Bem vindo a redação online!" />
-                <CardText text="Esse é o primeiro passso para entrar na maior faculdade de Animação da América latína!" />
-                <CardText text="Atente-se para os pontos a seguir, antes de começar a prova." />
-                <Divider />
-                <CardText bold text="Digite seu e-mail e cpf para validarmos a prova." />
-                <div>
-                    <form className="">
-                        <div className="mb-3">
-                            <label htmlFor="email-address-icon"
-                                className="block mb-2 text-sm font-medium text-gray-700">Seu e-mail</label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                        <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
-                                        <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
-                                    </svg>
+        <div className="min-h-screen flex items-center justify-center py-8 pb-20">
+            <div
+                className="z-[-1] fixed top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-[url('/background/background-login.jpg')]"
+            />
+            <div className="flex">
+                <div className="flex p-8 max-w-md p-6 flex-col flex gap align-center justify-center">
+                    <CardTitle color="white" text="Seja Bem-Vindo ao seu Saas!" />
+                    <CardText color='gray-400' text="Agora, você tem todos os seus processos de forma automatizada, e segura!" />
+                    <CardText color='gray-400' text="Experimente o mundo digital, e veja sua produtividade, subir." />
+                </div>
+                <Card gap={2} >
+                    <CardTitle center text="Seja Bem-Vindo(a)!" />
+                    <CardText text="Insira seu e-mail e senha para entrar no sistema." />
+                    <Divider />
+                    <div>
+                        <form className="">
+                            <div className="mb-3">
+                                <label htmlFor="email-address-icon"
+                                    className="block mb-2 text-sm font-medium text-gray-700">Seu e-mail</label>
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                        <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                            <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
+                                            <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
+                                        </svg>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        value={userAuthentication?.email}
+                                        onChange={handleChange}
+                                        id="email-user"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 py-2.5"
+                                        placeholder="aluno@gmail.com"
+                                    />
                                 </div>
+                            </div>
+                            <div className="mb-6">
+                                <label htmlFor="email-address-icon"
+                                    className="block mb-2 text-sm font-medium text-gray-700">Sua senha</label>
                                 <input
-                                    type="text"
-                                    name="email"
-                                    value={userAuthentication?.email}
+                                    type="password"
+                                    name="password"
+                                    id="password-user"
+                                    value={userAuthentication?.password}
                                     onChange={handleChange}
-                                    id="email-user"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 py-2.5"
-                                    placeholder="aluno@gmail.com"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 py-2.5"
+                                    placeholder="•••••••••"
+                                    required
                                 />
                             </div>
-                        </div>
-                        <div className="mb-5">
-                            <label htmlFor="cpf-user"
-                                className="block mb-2 text-sm font-medium text-gray-700">Seu CPF</label>
-                            <input
-                                type="text"
-                                name="cpf"
-                                value={userAuthentication?.cpf}
-                                onChange={handleChange}
-                                id="cpf-user"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 py-2.5"
-                                placeholder="412.123.123.45"
-                            />
-                        </div>
-                    </form>
-                </div>
-                <Button arrowIcon={!loading} isLoading={loading} text="Prosseguir" onClick={() => handleAuthenticationUser()} />
-            </Card>
+
+                        </form>
+                    </div>
+                    <Button arrowIcon={!loading} isLoading={loading} text="Prosseguir" onClick={() => handleAuthenticationUser()} />
+                </Card>
+
+            </div>
         </div>
     )
 
