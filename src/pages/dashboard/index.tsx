@@ -1,14 +1,20 @@
 import { SectionHeader } from "@/components"
-import { Card, CardTitle, CardText, CardButton } from "@/components/card"
-import { useAppContext } from "@/context/AppContext"
+import ChartBar from "@/components/charts/ChartBar"
+import ChartPie from "@/components/charts/ChartPie"
+import ChartCard from "@/components/charts/ChartsCard"
 import React from "react"
 
 const Dashboard: React.FC = () => {
 
-    const { userData } = useAppContext()
-
     return (
-        <SectionHeader title="Dashboard" />
+        <>
+            <SectionHeader title="Dashboard" />
+            <div className="flex gap-8 flex-wrap">
+                <ChartCard />
+                <ChartPie />
+                <ChartBar />
+            </div>
+        </>
     )
 
 }

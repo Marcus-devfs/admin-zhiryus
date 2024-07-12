@@ -2,16 +2,12 @@ import { CryptoModal } from "@/components";
 import { CardIcon } from "@/components/card";
 import { ReactNode, createContext, useContext, useEffect, useReducer, useState } from "react";
 
+interface UserAuthentication {
+    email?: string,
+    password?: string
+}
+
 interface AppContextType {
-    currentStep: number;
-    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-    timeRemaining: number;
-    setTimeRemaining: React.Dispatch<React.SetStateAction<number>>;
-    totalTime: number;
-    startEssay: boolean;
-    setStartEssay: React.Dispatch<React.SetStateAction<boolean>>;
-    userAuthentication: UserAuthentication;
-    setUserAuthentication: React.Dispatch<React.SetStateAction<UserAuthentication>>;
     handleVerifyUser: (userData: UserAuthentication) => Promise<void | object | any>;
     loading: boolean
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,11 +16,6 @@ interface AppContextType {
     alertData: AlertData,
     setAlertData: React.Dispatch<React.SetStateAction<AlertData>>;
     isAuthenticated: boolean
-}
-
-interface UserAuthentication {
-    email?: string,
-    password?: string
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -42,16 +33,7 @@ interface AlertData {
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
-    const [currentStep, setCurrentStep] = useState<number>(0)
-    const totalTime = 10800
-    // const totalTime = 200
-    const [timeRemaining, setTimeRemaining] = useState<number>(totalTime);
-    const [startEssay, setStartEssay] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
-    const [userAuthentication, setUserAuthentication] = useState<UserAuthentication>({
-        password: '',
-        email: ''
-    });
     const [userData, setUserData] = useState<object | any>();
     const [alertData, setAlertData] = useState<AlertData>({
         active: false,
@@ -59,8 +41,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         message: '',
         type: ''
     })
-    const [essayContent, setEssayContent] = useState<string>('');
-
     const handleVerifyUser = async (userAuthentication: UserAuthentication) => {
         try {
             // const response = await fetch('/api/verifyUser', {
@@ -88,23 +68,24 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         }
     }
 
+    console.log(userData)
+
+    useEffect(() => {
+        if (userData) {
+            setUserData(userData)
+        }
+    }, [])
+
 
     return (
         <AppContext.Provider
             value={{
-                currentStep, setCurrentStep,
-                timeRemaining, setTimeRemaining,
-                totalTime,
-                startEssay,
-                setStartEssay,
-                userAuthentication, setUserAuthentication,
                 handleVerifyUser,
                 loading, setLoading,
                 userData, setUserData,
                 alertData,
                 setAlertData,
-                // isAuthenticated: !!userData
-                isAuthenticated: true
+                isAuthenticated: !!userData,
             }}
         >
             {children}

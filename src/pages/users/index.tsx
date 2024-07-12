@@ -5,8 +5,6 @@ import React from "react"
 
 const Users: React.FC = () => {
 
-    const { userData } = useAppContext()
-
     const dropdownItems = [
         { label: 'Reward', href: '#' },
         { label: 'Promote', href: '#' },

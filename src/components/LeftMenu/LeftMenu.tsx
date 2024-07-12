@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface MenuItem {
@@ -26,11 +27,11 @@ const Sidebar: React.FC<SidebarProps> = ({ menu }) => {
   return (
     <aside
       id="logo-sidebar"
-      className="relative top-0 left-0 z-40 min-w-56 h-screen transition-transform -translate-x-full sm:translate-x-0 z-50"
+      className="fixed top-0 left-0 z-40 min-w-56 h-screen transition-transform -translate-x-full sm:translate-x-0 z-50"
       aria-label="Sidebar"
     >
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-        <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5">
+        <Link href="/dashboard" className="flex items-center ps-2.5 mb-5">
           <img
             src="./icons/logo_construtora.png"
             className="h-6 me-3 sm:h-7"
@@ -39,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menu }) => {
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
             ZHIRYUS
           </span>
-        </a>
+        </Link>
         <ul className="space-y-2 font-medium">
           {menu.map((menuItem) => (
             <li key={menuItem.id}>
@@ -77,7 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menu }) => {
                   </svg>
                 </button>
               ) : (
-                <a
+                <Link
                   href={menuItem.path}
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
@@ -91,20 +92,19 @@ const Sidebar: React.FC<SidebarProps> = ({ menu }) => {
                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">{menuItem.title}</span>
-                </a>
+                </Link>
               )}
 
               {(menuItem.submenu && menuItem.submenu.length > 0 && isDropdownOpen?.active && isDropdownOpen?.id === menuItem?.id) && (
                 <ul id={`dropdown-${menuItem.id}`} className={`py-2 space-y-2`}>
                   {menuItem?.submenu?.map((subMenuItem) => (
-                    <li key={subMenuItem.id}>
-                      <a
-                        href={subMenuItem.path}
-                        className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                      >
-                        {subMenuItem.title}
-                      </a>
-                    </li>
+
+                    <Link key={subMenuItem.id}
+                      href={subMenuItem.path}
+                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >
+                      {subMenuItem.title}
+                    </Link>
                   ))}
                 </ul>
               )}

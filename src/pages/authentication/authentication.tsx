@@ -2,8 +2,7 @@ import { Button } from "@/components/button/Button"
 import { Card, CardTitle, CardText, CardButton } from "@/components/card"
 import { Divider } from "@/components/divider/Divider"
 import { useAppContext } from "@/context/AppContext"
-import { formatCPF } from "@/help"
-import React from "react"
+import React, { useState } from "react"
 
 interface UserAuthenticationObject {
     email: string,
@@ -12,7 +11,11 @@ interface UserAuthenticationObject {
 
 const Authentication: React.FC = () => {
 
-    const { setCurrentStep, handleVerifyUser, userAuthentication, setUserAuthentication, loading, setLoading, setAlertData } = useAppContext()
+    const { handleVerifyUser, userData, loading, setLoading, setAlertData } = useAppContext()
+    const [userAuthentication, setUserAuthentication] = useState({
+        email: '',
+        password: ''
+    })
 
     const verifyInputs = () => {
 

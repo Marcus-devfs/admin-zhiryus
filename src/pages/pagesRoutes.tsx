@@ -13,7 +13,6 @@ interface PagesRouteProps {
 
 
 const PagesRoute: FC<PagesRouteProps> = ({ Component, pageProps }) => {
-
     return (
         <>
             <Head>
@@ -30,7 +29,7 @@ const PagesRoute: FC<PagesRouteProps> = ({ Component, pageProps }) => {
                 <div className="bg-gray-300 min-h-screen flex w-full">
                     <Sidebar menu={MenuList} />
                     <Navbar />
-                    <div className="flex overflow-auto w-full flex-col gap-8 py-24 px-8">
+                    <div className="flex overflow-auto w-full flex-col gap-8 py-24 px-8 pl-[250px]">
                         <Component {...pageProps} />
                     </div>
                 </div>
