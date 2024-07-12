@@ -27,13 +27,11 @@ const PagesRoute: FC<PagesRouteProps> = ({ Component, pageProps }) => {
                 />
             </Head>
             <ProtectRoute>
-                <div className="bg-gray-300 h-screen flex">
+                <div className="bg-gray-300 min-h-screen flex w-full">
                     <Sidebar menu={MenuList} />
-                    <div className="flex flex-col w-full">
-                        <Navbar />
-                        <div className="flex-grow h-full overflow-auto">
-                            <Component {...pageProps} />
-                        </div>
+                    <Navbar />
+                    <div className="flex overflow-auto w-full flex-col gap-8 py-24 px-8">
+                        <Component {...pageProps} />
                     </div>
                 </div>
             </ProtectRoute>

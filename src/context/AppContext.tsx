@@ -103,7 +103,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
                 userData, setUserData,
                 alertData,
                 setAlertData,
-                isAuthenticated: !!userData
+                // isAuthenticated: !!userData
+                isAuthenticated: true
             }}
         >
             {children}

@@ -9,16 +9,19 @@ interface MenuItem {
 
 export const MenuList: MenuItem[] = [
     {
-        id: '01', title: 'Dashboard', icon: '', path: '/dashboard', submenu: []
+        id: '01', title: 'Início', icon: '', path: '/dashboard', submenu: []
     },
     {
         id: '02', title: 'Administrativo', icon: '', path: '/', submenu: [
             {
-                id: '01', title: 'Funcionários', icon: '', path: '/'
+                id: '01', title: 'Funcionários', icon: '', path: '/users'
             },
             {
                 id: '02', title: 'Clientes', icon: '', path: '/'
-            }
+            },
+            {
+                id: '02', title: 'Centro de Custos', icon: '', path: '/'
+            },
         ]
     },
     {

@@ -103,8 +103,18 @@ const Authentication: React.FC = () => {
                 className="z-[-1] fixed top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-[url('/background/background-login.jpg')]"
             />
             <div className="flex">
-                <div className="flex p-8 max-w-md p-6 flex-col flex gap align-center justify-center">
-                    <CardTitle color="white" text="Seja Bem-Vindo ao seu Saas!" />
+                <div className="flex p-8 max-w-md p-6 flex-col gap align-center justify-center">
+                    <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5">
+                        <img
+                            src="./icons/logo_construtora.png"
+                            className="h-6 me-3 sm:h-7"
+                            alt="Flowbite Logo"
+                        />
+                        <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                            ZHIRYUS
+                        </span>
+                    </a>
+                    {/* <CardTitle color="white" text="Seja Bem-Vindo(a)!" /> */}
                     <CardText color='gray-400' text="Agora, você tem todos os seus processos de forma automatizada, e segura!" />
                     <CardText color='gray-400' text="Experimente o mundo digital, e veja sua produtividade, subir." />
                 </div>
