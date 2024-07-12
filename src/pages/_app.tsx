@@ -6,7 +6,7 @@ import PagesRoute from "./pagesRoutes";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <AppProvider>
-      <PagesRoute Component={Component} pageProps={...pageProps} />
+      <PagesRoute Component={Component} pageProps={pageProps} />
     </AppProvider>
   )
 }

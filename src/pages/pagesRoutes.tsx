@@ -13,7 +13,6 @@ interface PagesRouteProps {
 
 
 const PagesRoute: FC<PagesRouteProps> = ({ Component, pageProps }) => {
-    const removePadding = Component.noPadding;
 
     return (
         <>
