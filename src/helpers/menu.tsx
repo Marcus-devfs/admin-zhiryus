@@ -17,11 +17,11 @@ export const MenuList: MenuItem[] = [
                 id: '01', title: 'Funcionários', icon: '', path: '/users'
             },
             {
-                id: '02', title: 'Clientes', icon: '', path: '/'
+                id: '02', title: 'Clientes', icon: '', path: '/customer'
             },
-            {
-                id: '02', title: 'Centro de Custos', icon: '', path: '/'
-            },
+            // {
+            //     id: '02', title: 'Centro de Custos', icon: '', path: '/'
+            // },
         ]
     },
     {

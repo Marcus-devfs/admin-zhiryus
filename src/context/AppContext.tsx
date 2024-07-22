@@ -68,8 +68,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         }
     }
 
-    console.log(userData)
-
     useEffect(() => {
         if (userData) {
             setUserData(userData)

@@ -5,7 +5,7 @@ import { randomUUID } from "crypto"
 import { useRouter } from "next/router"
 import React from "react"
 
-const Users: React.FC = () => {
+const Customer: React.FC = () => {
     const router = useRouter()
 
     const dropdownItems = [
@@ -16,18 +16,18 @@ const Users: React.FC = () => {
     ];
 
 
-    const users = [
+    const Customer = [
         { id: 1, name: 'Marcus Silva', email: 'marcus.silva@gmail.com', avatar: '', position: 'Software Engenier', area: 'TI Development' },
         { id: 2, name: 'Fulano Souza', email: 'fulano.silva@gmail.com', avatar: '', position: 'Software Engenier', area: 'RH' },
     ];
 
     return (
         <>
-            <SectionHeader title="Funcionários" />
+            <SectionHeader title="Clientes" />
             <div className="flex w-full h-full flex-col">
                 {/* <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white">
                     <TableDropdownMenu items={dropdownItems} />
-                    <TableSearchInput placeholder="Search for users" />
+                    <TableSearchInput placeholder="Search for Customer" />
                 </div> */}
                 <Table>
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 border">
@@ -48,13 +48,13 @@ const Users: React.FC = () => {
                                 </div>
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Name
+                                Company
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Position
+                                Business
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Área
+                                Status
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Action
@@ -82,33 +82,27 @@ const Users: React.FC = () => {
                                 scope="row"
                                 className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                             >
-                                <img
-                                    className="w-10 h-10 rounded-full"
-                                    src="./icons/perfil.jpg"
-                                    alt="Thomas Lean"
-                                />
                                 <div className="ps-3">
                                     <div className="text-base font-semibold">
-                                        Marcus Vinicius
+                                        Diebold Nixdorf
                                     </div>
                                     <div className="font-normal text-gray-500">
-                                        marcus@gmail.com
+                                        contato@diebold.com.br
                                     </div>
                                 </div>
                             </th>
-                            <td className="px-6 py-4">Software Engenier</td>
+                            <td className="px-6 py-4">Desenvolvimento de comércio</td>
                             <td className="px-6 py-4">
                                 <div className="flex items-center">
-                                    {/* <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>{' '} */}
-                                    TI Suport
+                                    <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Active
                                 </div>
                             </td>
                             <td className="px-6 py-4 cursor-pointer">
-                                <div onClick={() => router.push(`/users/1`)}>
+                                <div onClick={() => router.push(`/customer/1`)}>
                                     <a
                                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                     >
-                                        Edit user
+                                        Edit company
                                     </a>
                                 </div>
                             </td>
@@ -121,4 +115,4 @@ const Users: React.FC = () => {
 
 }
 
-export default Users
+export default Customer

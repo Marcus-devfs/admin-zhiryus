@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 export const Navbar: React.FC = () => {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-    const { userData } = useAppContext()
+    const { userData, setUserData } = useAppContext()
 
     const toggleUserMenu = () => {
         setIsUserMenuOpen(!isUserMenuOpen);
@@ -70,19 +70,17 @@ export const Navbar: React.FC = () => {
                     <div className="relative">
                         <button
                             type="button"
-                            className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            className="flex rounded-full md:me-0 focus:ring-4 focus:ring-gray-300"
                             id="user-menu-button"
                             aria-expanded={isUserMenuOpen}
                             onClick={toggleUserMenu}
                         >
-                            <span className="sr-only">Open user menu</span>
                             <img
                                 className="w-8 h-8 rounded-full"
                                 src="./icons/perfil.jpg"
                                 alt="user photo"
                             />
                         </button>
-                        {/* Dropdown menu */}
                         {isUserMenuOpen && (
                             <div
                                 className="absolute right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
@@ -92,11 +90,8 @@ export const Navbar: React.FC = () => {
                                 aria-labelledby="user-menu-button"
                             >
                                 <div className="px-4 py-3">
-                                    <span className="block text-sm text-gray-900 dark:text-white">
-                                        {userData?.email}
-                                    </span>
                                     <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
-                                        {userData?.email}
+                                        {userData?.nome || 'Marcus Silva'}
                                     </span>
                                 </div>
                                 <ul className="py-2">
@@ -105,7 +100,7 @@ export const Navbar: React.FC = () => {
                                             href="#"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                         >
-                                            Dashboard
+                                            Início
                                         </Link>
                                     </li>
                                     <li>
@@ -113,7 +108,7 @@ export const Navbar: React.FC = () => {
                                             href="#"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                         >
-                                            Settings
+                                            Meus Dados
                                         </Link>
                                     </li>
                                     <li>
@@ -121,16 +116,15 @@ export const Navbar: React.FC = () => {
                                             href="#"
                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                         >
-                                            Earnings
+                                            Alterar senha
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link
-                                            href="/"
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                        >
-                                            Sign out
-                                        </Link>
+                                        <div
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  cursor-pointer dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                            onClick={() => setUserData(null)}>
+                                            Sair
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
