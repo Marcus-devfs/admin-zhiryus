@@ -13,7 +13,7 @@ const CompanyEdit: React.FC = () => {
 
     return (
         <>
-            <SectionHeader title={company.name} />
+            <SectionHeader title='Editar Cliente' />
             <div className="bg-white rounded py-5 px-6">
                 <h1 className="text-gray-900 text-2xl font-bold pb-8">Dados da Empresa</h1>
                 <form>
@@ -25,7 +25,7 @@ const CompanyEdit: React.FC = () => {
                             <input
                                 type="text"
                                 id="company_name"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-300 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Company Exemple"
                                 required
                             />
@@ -37,7 +37,7 @@ const CompanyEdit: React.FC = () => {
                             <input
                                 type="text"
                                 id="company"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-300 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Flowbite"
                                 required
                             />
@@ -49,7 +49,7 @@ const CompanyEdit: React.FC = () => {
                             <input
                                 type="tel"
                                 id="phone"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-300 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="123-45-678"
                                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                                 required
@@ -62,7 +62,7 @@ const CompanyEdit: React.FC = () => {
                             <input
                                 type="url"
                                 id="website"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-300 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="flowbite.com"
                                 required
                             />
@@ -74,7 +74,7 @@ const CompanyEdit: React.FC = () => {
                             <input
                                 type="number"
                                 id="visitors"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-300 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required
                             />
                         </div>
@@ -86,7 +86,7 @@ const CompanyEdit: React.FC = () => {
                         <input
                             type="email"
                             id="email"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-300 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="john.doe@company.com"
                             required
                         />
@@ -107,12 +107,19 @@ const CompanyEdit: React.FC = () => {
                             .
                         </label>
                     </div>
-                    <button
-                        type="submit"
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                        Salvar
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            type="submit"
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                            Salvar
+                        </button>
+                        <button
+                            className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                        >
+                            Excluir
+                        </button>
+                    </div>
                 </form>
             </div>
         </>
