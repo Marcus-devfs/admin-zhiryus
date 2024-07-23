@@ -18,10 +18,7 @@ export const MenuList: MenuItem[] = [
             },
             {
                 id: '02', title: 'Clientes', icon: '', path: '/customer'
-            },
-            // {
-            //     id: '02', title: 'Centro de Custos', icon: '', path: '/'
-            // },
+            }
         ]
     },
     {
@@ -30,8 +27,11 @@ export const MenuList: MenuItem[] = [
                 id: '01', title: 'Comissões', icon: '', path: '/'
             },
             {
-                id: '03', title: 'Vendas', icon: '', path: '/'
-            }
+                id: '02', title: 'Orçamentos', icon: '', path: '/'
+            },
+            {
+                id: '03', title: 'Produtos', icon: '', path: '/products'
+            },
         ]
     },
 ]
