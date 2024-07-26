@@ -34,53 +34,53 @@ const ProductEdit: React.FC = () => {
                         </div>
                         <div>
                             <div>
-                                <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900">
+                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">
                                     Name
                                 </label>
                                 <input
                                     type="text"
-                                    id="first_name"
+                                    id="name"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                    placeholder="John"
+                                    placeholder="Chair"
                                     required
                                 />
                             </div>
                             <div>
-                                <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900">
+                                <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900">
                                     Category
                                 </label>
                                 <input
                                     type="text"
-                                    id="last_name"
+                                    id="category"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                    placeholder="Doe"
+                                    placeholder="Category"
                                     required
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="company" className="block mb-2 text-sm font-medium text-gray-900">
+                                <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900">
                                     Price
                                 </label>
                                 <input
                                     type="text"
-                                    id="company"
+                                    id="price"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                    placeholder="Flowbite"
+                                    placeholder="50.80"
                                     required
                                 />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900">
+                            <label htmlFor="quantity" className="block mb-2 text-sm font-medium text-gray-900">
                                 Quantity
                             </label>
                             <input
-                                type="tel"
-                                id="phone"
+                                type="number"
+                                id="quantity"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="123-45-678"
-                                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                                placeholder="50"
+                                // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                                 required
                             />
                         </div>
@@ -90,24 +90,12 @@ const ProductEdit: React.FC = () => {
                             </label>
                             <input
                                 type="textarea"
-                                id="website"
+                                id="description"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="flowbite.com"
+                                placeholder="Chair White..."
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor="visitors" className="block mb-2 text-sm font-medium text-gray-900">
-                                Unique visitors (per month)
-                            </label>
-                            <input
-                                type="number"
-                                id="visitors"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                required
-                            />
-                        </div>
-
                     </div>
                 </form>
             </div>

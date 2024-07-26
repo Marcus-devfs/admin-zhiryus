@@ -43,14 +43,14 @@ const UserEdit: React.FC = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="company" className="block mb-2 text-sm font-medium text-gray-900">
-                                Company
+                            <label htmlFor="area" className="block mb-2 text-sm font-medium text-gray-900">
+                                Área
                             </label>
                             <input
                                 type="text"
-                                id="company"
+                                id="area"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Flowbite"
+                                placeholder="TI Suport"
                                 required
                             />
                         </div>
@@ -68,30 +68,19 @@ const UserEdit: React.FC = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="website" className="block mb-2 text-sm font-medium text-gray-900">
-                                Website URL
+                            <label htmlFor="position" className="block mb-2 text-sm font-medium text-gray-900">
+                                Position
                             </label>
                             <input
                                 type="url"
-                                id="website"
+                                id="position"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="flowbite.com"
+                                placeholder="Software Engenier"
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor="visitors" className="block mb-2 text-sm font-medium text-gray-900">
-                                Unique visitors (per month)
-                            </label>
-                            <input
-                                type="number"
-                                id="visitors"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                required
-                            />
-                        </div>
-                    </div>
-                    <div className="mb-6">
+
+                        <div className="mb-6">
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                             Email address
                         </label>
@@ -102,6 +91,7 @@ const UserEdit: React.FC = () => {
                             placeholder="john.doe@company.com"
                             required
                         />
+                    </div>
                     </div>
                     <div className="mb-6">
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">

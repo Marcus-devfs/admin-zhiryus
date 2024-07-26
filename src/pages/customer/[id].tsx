@@ -67,21 +67,22 @@ const CompanyEdit: React.FC = () => {
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor="visitors" className="block mb-2 text-sm font-medium text-gray-900">
-                                Unique visitors (per month)
+                        <div className="mb-6">
+                            <label htmlFor="revenue" className="block mb-2 text-sm font-medium text-gray-900">
+                            Average Revenue
                             </label>
                             <input
-                                type="number"
-                                id="visitors"
+                                type="text"
+                                id="revenue"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="$ 1.000.000,00"
                                 required
                             />
                         </div>
                     </div>
                     <div className="mb-6">
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
-                            Email address
+                            Email contact
                         </label>
                         <input
                             type="email"

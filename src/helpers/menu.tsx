@@ -24,13 +24,13 @@ export const MenuList: MenuItem[] = [
     {
         id: '03', title: 'Comercial', icon: '', path: '/', submenu: [
             {
-                id: '01', title: 'Comissões', icon: '', path: '/'
+                id: '01', title: 'Comissões', icon: '', path: '/comissions'
             },
             {
-                id: '02', title: 'Orçamentos', icon: '', path: '/'
+                id: '02', title: 'Orçamentos', icon: '', path: '/budget'
             },
             {
-                id: '03', title: 'Produtos', icon: '', path: '/products'
+                id: '03', title: 'Produtos', icon: '', path: '/product'
             },
         ]
     },
