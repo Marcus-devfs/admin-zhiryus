@@ -11,7 +11,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <>
-            <SectionHeader title="Seja Bem-Vindo(a)" />
+            {/* <SectionHeader title="Seja Bem-Vindo(a)" /> */}
             {/* <Carousel /> */}
             <div className="flex gap-4">
                 <div className="flex p-6 border bg-white flex-col gap-3 rounded-lg border-slate-300 border align-center w-full shadow-lg">

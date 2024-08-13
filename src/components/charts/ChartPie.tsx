@@ -20,10 +20,10 @@ const ChartPie: React.FC = () => {
   });
 
   return (
-    <div className="sm:max-w-sm w-full bg-white rounded-lg shadow p-4 md:p-6 dark:bg-gray-800">
+    <div className="sm:max-w-sm w-full bg-white rounded-lg shadow p-4 md:p-6">
       <div className="flex justify-between">
         <div>
-          <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
+          <h5 className="leading-none text-3xl font-bold text-gray-900 pb-2">32.4k</h5>
           <p className="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
         </div>
         <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">

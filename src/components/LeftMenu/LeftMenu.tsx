@@ -30,14 +30,14 @@ const Sidebar: React.FC<SidebarProps> = ({ menu }) => {
       className="fixed top-0 left-0 z-40 min-w-56 h-screen transition-transform -translate-x-full sm:translate-x-0 z-50"
       aria-label="Sidebar"
     >
-      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-800 shadow-lg">
         <Link href="/dashboard" className="flex items-center ps-2.5 mb-5">
           <img
             src="./icons/logo_construtora.png"
             className="h-6 me-3 sm:h-7"
             alt="Flowbite Logo"
           />
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
             ZHIRYUS
           </span>
         </Link>
@@ -47,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menu }) => {
               {menuItem.submenu && menuItem.submenu.length > 0 ? (
                 <button
                   type="button"
-                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group text-white hover:bg-gray-700"
                   aria-controls={`dropdown-${menuItem.id}`}
                   onClick={() => toggleDropdown(menuItem.id)}
                 >
@@ -80,7 +80,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menu }) => {
               ) : (
                 <Link
                   href={menuItem.path}
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center p-2 text-gray-900 rounded-lg text-white hover:bg-gray-100 hover:bg-gray-700 group"
                 >
                   <svg
                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -101,7 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menu }) => {
 
                     <Link key={subMenuItem.id}
                       href={subMenuItem.path}
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 text-white hover:bg-gray-700"
                     >
                       {subMenuItem.title}
                     </Link>

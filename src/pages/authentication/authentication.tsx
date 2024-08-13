@@ -113,7 +113,7 @@ const Authentication: React.FC = () => {
                             className="h-6 me-3 sm:h-7"
                             alt="Flowbite Logo"
                         />
-                        <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                        <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
                             ZHIRYUS
                         </span>
                     </a>
